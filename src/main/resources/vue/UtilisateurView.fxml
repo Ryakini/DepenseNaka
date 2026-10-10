@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ydev.depenseNaka.controlleur.UtilisateurControlleur"
+      VBox.vgrow="ALWAYS">
+    <stylesheets>
+        <URL value="@cssFile/style.css" />
+    </stylesheets>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+
+    <!-- En-tête avec Recherche centrée -->
+    <HBox spacing="10.0" alignment="CENTER">
+        <Label text="Rechercher :" />
+        <TextField fx:id="txtRecherche" promptText="Nom, prénom, pseudo..." prefWidth="400.0" />
+        <Button onAction="#handleNouveau" styleClass="success" text="Ajouter">
+            <graphic><FontIcon iconLiteral="fas-plus" iconSize="16" /></graphic>
+        </Button>
+    </HBox>
+
+    <!-- Zone principale : VBox.vgrow="ALWAYS" force cette zone à s'étirer verticalement -->
+    <HBox spacing="15.0" VBox.vgrow="ALWAYS">
+        <!-- Zone Tableaux côte à côte -->
+        <HBox spacing="15.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <!-- Table Utilisateurs -->
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                <Label text="Liste des utilisateurs" style="-fx-font-weight: bold;" />
+                <TableView fx:id="tvUtilisateurs" styleClass="striped" VBox.vgrow="ALWAYS">
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                    <columns>
+                        <TableColumn fx:id="colId" text="N°" prefWidth="60.0" />
+                        <TableColumn fx:id="colNom" text="Nom" prefWidth="100.0" />
+                        <TableColumn fx:id="colPrenom" text="Prénom" prefWidth="100.0" />
+                        <TableColumn fx:id="colPseudo" text="Pseudo" prefWidth="90.0" />
+                        <TableColumn fx:id="colRole" text="Rôle" prefWidth="110.0" />
+                        <TableColumn fx:id="colTelephone" text="Téléphone" prefWidth="90.0" />
+                        <TableColumn fx:id="colAdresse" text="Adresse" prefWidth="100.0" />
+                        <TableColumn fx:id="colAction" text="Action" prefWidth="60.0" />
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- Table Historique -->
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                <Label text="Historique de connexion" style="-fx-font-weight: bold;" />
+                <TableView fx:id="tvHistorique" styleClass="striped" VBox.vgrow="ALWAYS">
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                    <columns>
+                        <TableColumn fx:id="colHistSession" text="Session" prefWidth="150.0" />
+                        <TableColumn fx:id="colHistDebut" text="Début" prefWidth="120.0" />
+                        <TableColumn fx:id="colHistFin" text="Fin" prefWidth="120.0" />
+                        <TableColumn fx:id="colHistStatut" text="Status" prefWidth="60.0" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </HBox>
+
+        <!-- Formulaire d'édition -->
+        <VBox fx:id="formPane" spacing="10.0" prefWidth="320.0" visible="false" managed="false" VBox.vgrow="ALWAYS"
+              style="-fx-border-color: #dcdcdc; -fx-border-width: 0 0 0 1; -fx-padding: 0 0 0 10;">
+            <Label text="Formulaire Utilisateur" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+                <VBox spacing="10.0">
+                    <padding>
+                        <Insets right="5.0" />
+                    </padding>
+                    <VBox spacing="3.0">
+                        <Label text="Nom *:" />
+                        <TextField fx:id="txtNom" />
+                    </VBox>
+
+                    <VBox spacing="3.0">
+                        <Label text="Prénom :" />
+                        <TextField fx:id="txtPrenom" />
+                    </VBox>
+
+                    <VBox spacing="3.0">
+                        <Label text="Pseudo *:" />
+                        <TextField fx:id="txtPseudo" />
+                    </VBox>
+
+                    <VBox spacing="3.0">
+                        <Label text="Mot de passe *:" />
+                        <PasswordField fx:id="txtMdp" />
+                    </VBox>
+
+                    <VBox spacing="3.0">
+                        <Label text="Rôle *:" />
+                        <ComboBox fx:id="cbRole" maxWidth="Infinity" />
+                    </VBox>
+
+                    <VBox spacing="3.0">
+                        <Label text="Adresse :" />
+                        <TextField fx:id="txtAdresse" />
+                    </VBox>
+
+                    <VBox spacing="3.0">
+                        <Label text="Téléphone :" />
+                        <TextField fx:id="txtTelephone" />
+                    </VBox>
+                </VBox>
+            </ScrollPane>
+
+            <HBox spacing="10.0" alignment="CENTER_RIGHT">
+                <padding><Insets top="10.0" /></padding>
+                <Button maxWidth="1.7976931348623157E308" onAction="#handleAnnuler" styleClass="danger" text="Annuler" HBox.hgrow="ALWAYS" />
+                <Button maxWidth="1.7976931348623157E308" onAction="#handleEnregistrer" styleClass="success" text="Enregistrer" HBox.hgrow="ALWAYS">
+                    <graphic><FontIcon iconLiteral="fas-save" iconSize="16" /></graphic>
+                </Button>
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>

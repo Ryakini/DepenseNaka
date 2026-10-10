@@ -1,0 +1,128 @@
+
+/* Style par défaut pour les boutons de la barre latérale */
+.button.flat {
+    -fx-font-weight: normal;
+    -fx-underline: false; /* Supprime toute ligne en dessous du texte */
+}
+
+/* 🖱️ Décoration lors du survol de la souris (Hover) */
+.button.flat:hover {
+    -fx-background-color: transparent !important;
+    -fx-font-weight: bold; /* Le texte passe en gras */
+    -fx-underline: false;  /* Sécurité pour s'assurer qu'aucune ligne n'apparaît */
+}
+
+/* 📌 Style lorsque le bouton est Actif (quand il possède la classe 'success') */
+.button.success {
+    -fx-font-weight: bold; /* Le texte reste en gras */
+    -fx-underline: false;  /* Pas de ligne en dessous */
+}
+
+/* Couleurs dynamiques pour les icônes du tableau de bord */
+.icon-success {
+    -fx-icon-color: -color-success-fg;
+}
+
+.icon-accent {
+    -fx-icon-color: -color-accent-fg;
+}
+
+.icon-danger {
+    -fx-icon-color: -color-danger-fg;
+}
+
+/* Centrer le texte des en-têtes de colonnes */
+.table-view .column-header .label {
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+}
+
+/* Supprimer les séparateurs de colonnes dans l'en-tête (borders des headers) */
+.table-view .column-header {
+    -fx-border-color: transparent; /* Rend les séparateurs d'en-tête invisibles */
+    -fx-background-insets: 0;
+}
+
+/* Centrer le contenu de toutes les cellules de données dans les tableaux */
+.table-view .table-cell {
+    -fx-alignment: CENTER;
+}
+
+/* Masque la bordure inférieure des cellules pour toutes les TableView*/
+/* 1. Désactiver la couleur de bordure interne du tableau */
+.table-view {
+    -fx-table-cell-border-color: transparent !important;
+}
+
+/* 2. Forcer la transparence sur les lignes et cellules */
+.table-view .table-row-cell {
+    -fx-border-color: transparent !important;
+    -fx-table-cell-border-color: transparent !important;
+    -fx-background-insets: 0 !important;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent !important;
+    -fx-background-insets: 0 !important;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-insets: 0;
+}
+
+/* Customisation de la courbe du graphique
+.chart-series-line {
+    -fx-stroke: -color-accent-emphasis; // Utilise la couleur accentuée de votre thème
+    -fx-stroke-width: 3px;
+}
+
+.chart-line-symbol {
+    -fx-background-color: -color-accent-emphasis, -color-bg-default;
+    -fx-background-radius: 4px;
+    -fx-padding: 4px;
+}
+
+ */
+
+/* Supprimer les grilles d'arrière-plan trop lourdes (optionnel) */
+.chart-alternative-row-binary-element {
+    -fx-fill: transparent;
+}
+.chart-vertical-grid-lines {
+    -fx-stroke: transparent;
+}
+.chart-horizontal-grid-lines {
+    -fx-stroke: -color-border-muted;
+    -fx-stroke-dash-array: 2px 2px;
+}
+
+/* Supprime les tirets / grilles d'arrière-plan du LineChart */
+.chart-vertical-grid-lines {
+    -fx-stroke: transparent !important;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: transparent !important;
+}
+
+/* Supprime la bordure externe brute autour de la zone de tracé */
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+/* Personnalisation moderne de la courbe
+.chart-series-line {
+    -fx-stroke: -color-accent-emphasis;
+    -fx-stroke-width: 3.5px;
+}
+ */
+
+/* Lissage esthétique des points d'ancrage (cercles de données) */
+.chart-line-symbol {
+    -fx-background-color: -color-accent-emphasis, -color-bg-overlay;
+    -fx-background-radius: 5px;
+    -fx-padding: 4.5px;
+}
+
+
+

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" stylesheets="@cssFile/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ydev.depenseNaka.controlleur.VenteControlleur">
+    <children>
+        <HBox spacing="15.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+            <children>
+
+                <!-- SECTION GAUCHE : CATALOGUE DE PRODUITS -->
+                <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <!-- Recherche produit -->
+                        <HBox spacing="10.0" styleClass="card">
+                            <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
+                            <children>
+                                <TextField fx:id="txtSearchProduit" promptText="Rechercher un produit par nom ou référence..." HBox.hgrow="ALWAYS">
+                                    <font>
+                                        <javafx.scene.text.Font size="14.0" />
+                                    </font>
+                                </TextField>
+                                <Button onAction="#reinitialiserRechercheProduit" styleClass="flat">
+                                    <graphic><FontIcon iconLiteral="fas-undo" iconSize="14" styleClass="accent" /></graphic>
+                                </Button>
+                            </children>
+                        </HBox>
+
+                        <!-- Table de sélection rapide des produits -->
+                        <TableView fx:id="tableCatalogueProduits" styleClass="striped" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colCatId" prefWidth="100.0" text="Référence" />
+                                <TableColumn fx:id="colCatNom" prefWidth="200.0" text="Désignation" />
+                                <TableColumn fx:id="colCatCategorie" prefWidth="120.0" text="Catégorie" />
+                                <TableColumn fx:id="colCatPrix" prefWidth="100.0" text="Prix U. (Ar)" />
+                                <TableColumn fx:id="colCatStock" prefWidth="80.0" text="En Stock" />
+                                <TableColumn fx:id="colCatAction" prefWidth="80.0" text="Action" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                    </children>
+                </VBox>
+
+                <!-- SECTION DROITE : PANIER ET ENCAISSEMENT -->
+                <VBox prefWidth="420.0" spacing="12.0" styleClass="card">
+                    <padding><Insets bottom="15.0" left="15.0" right="15.0" top="15.0" /></padding>
+                    <children>
+
+                        <!-- En-tête Client -->
+                        <VBox spacing="5.0">
+                            <children>
+                                <Label styleClass="bold" text="Client *" />
+                                <ComboBox fx:id="cbClient" maxWidth="1.7976931348623157E308" promptText="Sélectionner le client" />
+                            </children>
+                        </VBox>
+
+                        <Separator />
+
+                        <!-- Panier / Lignes de commande -->
+                        <VBox spacing="5.0" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="title-4" text="Panier d'achat" />
+                                <TableView fx:id="tablePanier" styleClass="striped" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="colPanierNom" prefWidth="150.0" text="Produit" />
+                                        <TableColumn fx:id="colPanierPrix" prefWidth="80.0" text="Prix" />
+                                        <TableColumn fx:id="colPanierQte" prefWidth="70.0" text="Qté" />
+                                        <TableColumn fx:id="colPanierTotal" prefWidth="80.0" text="Total" />
+                                        <TableColumn fx:id="colPanierAction" prefWidth="40.0" />
+                                    </columns>
+                                    <columnResizePolicy>
+                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                    </columnResizePolicy>
+                                </TableView>
+                            </children>
+                        </VBox>
+
+                        <Separator />
+
+                        <!-- Totaux et Paiement -->
+                        <VBox spacing="10.0">
+                            <children>
+                                <HBox alignment="CENTER_LEFT">
+                                    <children>
+                                        <Label styleClass="title-3" text="TOTAL :" />
+                                        <Label fx:id="lblMontantTotal" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" styleClass="title-2, text-accent" text="0.00 Ar" HBox.hgrow="ALWAYS" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label styleClass="bold" text="Avance / Reçu (Ar)" />
+                                                <TextField fx:id="txtAvance" promptText="0.0" />
+                                            </children>
+                                        </VBox>
+                                        <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label styleClass="bold" text="Reste à Payer" />
+                                                <Label fx:id="txtReste" style="-fx-font-size: 14px; -fx-text-fill: #e74c3c;" styleClass="bold" text="0.0" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+
+                                <VBox spacing="2.0">
+                                    <children>
+                                        <Label styleClass="bold" text="Mode de Paiement" />
+                                        <ComboBox fx:id="cbModePaiement" maxWidth="1.7976931348623157E308" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Action de validation -->
+                                <HBox spacing="10.0">
+                                    <padding><Insets top="10.0" /></padding>
+                                    <children>
+                                        <Button maxWidth="1.7976931348623157E308" onAction="#annulerVente" styleClass="danger" text="Vider" HBox.hgrow="ALWAYS" />
+                                        <Button maxWidth="1.7976931348623157E308" onAction="#validerVente" styleClass="success" text="Valider la Vente" HBox.hgrow="ALWAYS">
+                                            <graphic><FontIcon iconLiteral="fas-check-circle" iconSize="16" /></graphic>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+
+                    </children>
+                </VBox>
+
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane prefHeight="635.0" prefWidth="1040.0" stylesheets="@cssFile/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ydev.depenseNaka.controlleur.DashboardController">
+    <children>
+        <VBox spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <children>
+
+                <!-- 📊 Grille des Cartes KPI -->
+                <HBox spacing="15.0">
+                    <children>
+                        <!-- Carte 1: Ventes du Mois -->
+                        <VBox prefHeight="110.0" style="-fx-background-color: -color-bg-overlay; -fx-background-radius: 8; -fx-border-color: -color-border-default; -fx-border-radius: 8;" styleClass="elevated-card" HBox.hgrow="ALWAYS">
+                            <padding><Insets bottom="10.0" left="15.0" right="15.0" top="10.0" /></padding>
+                            <children>
+                                <HBox alignment="CENTER" spacing="10.0">
+                                    <children>
+                                        <FontIcon iconLiteral="fas-shopping-bag" iconSize="20" styleClass="icon-success" />
+                                        <Label styleClass="text-muted, bold" text="Ventes du mois(MGA)" />
+                                    </children>
+                                </HBox>
+                                <VBox alignment="CENTER" spacing="2.0" VBox.vgrow="ALWAYS">
+                                    <children>
+                                        <Label fx:id="lblVentesJour" styleClass="title-2" text="0 MGA" />
+                                        <HBox alignment="CENTER" spacing="5.0">
+                                            <children>
+                                                <Label style="-fx-font-size: 11px;" styleClass="text-muted" text="Montant non payé :" />
+                                                <Label fx:id="lblFactureImp" styleClass="bold, danger" text="0 MGA" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+
+                        <!-- Carte 2: Commandes au Fournisseur -->
+                        <VBox prefHeight="110.0" style="-fx-background-color: -color-bg-overlay; -fx-background-radius: 8; -fx-border-color: -color-border-default; -fx-border-radius: 8;" styleClass="elevated-card" HBox.hgrow="ALWAYS">
+                            <padding><Insets bottom="10.0" left="15.0" right="15.0" top="10.0" /></padding>
+                            <children>
+                                <HBox alignment="CENTER" spacing="10.0">
+                                    <children>
+                                        <FontIcon iconLiteral="fas-truck-loading" iconSize="20" styleClass="icon-accent" />
+                                        <Label styleClass="text-muted, bold" text="Commandes Fournisseur" />
+                                    </children>
+                                </HBox>
+                                <VBox alignment="CENTER" spacing="2.0" VBox.vgrow="ALWAYS">
+                                    <children>
+                                        <HBox alignment="CENTER" spacing="8.0">
+                                            <children>
+                                                <Label style="-fx-font-size: 11px;" styleClass="text-muted" text="En cours :" />
+                                                <Label fx:id="lblCommandesCours" styleClass="title-3" text="0" />
+                                                <Label style="-fx-font-size: 11px;" styleClass="text-muted" text="|" />
+                                                <Label style="-fx-font-size: 11px;" styleClass="text-muted" text="Validées :" />
+                                                <Label fx:id="lblCommandesValide" styleClass="title-3, success" text="0" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+
+                        <!-- Carte 3: Factures -->
+                        <VBox prefHeight="110.0" style="-fx-background-color: -color-bg-overlay; -fx-background-radius: 8; -fx-border-color: -color-border-default; -fx-border-radius: 8;" styleClass="elevated-card" HBox.hgrow="ALWAYS">
+                            <padding><Insets bottom="10.0" left="15.0" right="15.0" top="10.0" /></padding>
+                            <children>
+                                <HBox alignment="CENTER" spacing="10.0">
+                                    <children>
+                                        <FontIcon iconLiteral="fas-file-invoice" iconSize="20" styleClass="icon-danger" />
+                                        <Label styleClass="text-muted, bold" text="Statut Facture" />
+                                    </children>
+                                </HBox>
+                                <VBox alignment="CENTER" spacing="2.0" VBox.vgrow="ALWAYS">
+                                    <children>
+                                        <HBox alignment="CENTER" spacing="8.0">
+                                            <children>
+                                                <Label style="-fx-font-size: 11px;" styleClass="text-muted" text="Totales/Payées :" />
+                                                <Label fx:id="lblAlerteStock" styleClass="title-3, success" text="0" />
+                                                <Label style="-fx-font-size: 11px;" styleClass="text-muted" text="|" />
+                                                <Label style="-fx-font-size: 11px;" styleClass="text-muted" text="Impayées/Partielles :" />
+                                                <Label fx:id="lblFactureNPPP" styleClass="title-3, danger" text="0" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+
+                        <!-- Carte 4: Clients Actifs -->
+                        <VBox prefHeight="110.0" style="-fx-background-color: -color-bg-overlay; -fx-background-radius: 8; -fx-border-color: -color-border-default; -fx-border-radius: 8;" styleClass="elevated-card" HBox.hgrow="ALWAYS">
+                            <padding><Insets bottom="10.0" left="15.0" right="15.0" top="10.0" /></padding>
+                            <children>
+                                <HBox alignment="CENTER" spacing="10.0">
+                                    <children>
+                                        <FontIcon iconLiteral="fas-users" iconSize="20" styleClass="icon-accent" />
+                                        <Label styleClass="text-muted, bold" text="Clients enregistrés" />
+                                    </children>
+                                </HBox>
+                                <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                                    <children>
+                                        <Label fx:id="lblTotalClients" styleClass="title-2" text="0" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- 📈 Section Principale : Tableau Top Produits (GAUCHE) + Graphique (DROITE) -->
+                <HBox spacing="15.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <!-- Tableau des Produits les plus vendus (À GAUCHE) -->
+                        <VBox prefWidth="400.0" styleClass="card">
+                            <padding><Insets bottom="15.0" left="15.0" right="15.0" top="15.0" /></padding>
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <FontIcon iconLiteral="fas-crown" iconSize="18" styleClass="icon-accent" />
+                                        <Label styleClass="title-4" text="Top Produits du Mois" />
+                                    </children>
+                                </HBox>
+                                <TableView fx:id="tableTopProduits" VBox.vgrow="ALWAYS" styleClass="striped">
+                                    <columns>
+                                        <TableColumn fx:id="colNomProduit" prefWidth="180.0" text="Produit" />
+                                        <TableColumn fx:id="colQuantite" prefWidth="70.0" text="Qté" />
+                                        <TableColumn fx:id="colMontantTotal" prefWidth="120.0" text="Total (MGA)" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+
+                        <!-- Graphique Évolution Ventes du mois (À DROITE) -->
+                        <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                            <padding><Insets bottom="15.0" left="15.0" right="15.0" top="15.0" /></padding>
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <FontIcon iconLiteral="fas-chart-line" iconSize="18" styleClass="icon-accent" />
+                                        <Label styleClass="title-4" text="Évolution des ventes du mois" />
+                                    </children>
+                                </HBox>
+                                <LineChart fx:id="chartVentes" createSymbols="true" legendVisible="false" VBox.vgrow="ALWAYS">
+                                    <xAxis>
+                                        <CategoryAxis label="Jour du mois" side="BOTTOM" />
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis label="Montant (MGA)" side="LEFT" />
+                                    </yAxis>
+                                </LineChart>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
